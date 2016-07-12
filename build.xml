@@ -1,0 +1,45 @@
+<project name="lexic" default="all" basedir="">
+<!-- version 00.01 2016-06-13 -->
+
+<taskdef name="phpmd" classname="org.phpmd.ant.PHPMDTask"/>
+
+<!-- ne cree pas si existe deja -->
+<target name="creer">
+<mkdir dir="${basedir}/Doc"/>
+<mkdir dir="${basedir}/Rapports"/>
+</target>
+
+<target name="supprimer">
+<delete dir="Doc"/>
+<delete dir="Rapports"/>
+</target>
+
+<!-- /c pour shell -->
+<target name="unitaire">
+	<exec dir="${basedir}/Tests" executable="cmd">	
+		<arg line="/c phpunit UtileTest --log-junit ../Rapports/execution.xml --whitelist ${basedir}/Modele --coverage-xml ../Rapports/couverture.xml"/> 
+	</exec>
+</target>
+
+<target name="documenter">
+	<exec dir="${basedir}/Modele" executable="cmd">	
+		<arg line="/c phpdoc  -d ${basedir}/Modele -t ${basedir}/Doc"/> 
+	</exec>
+</target>
+
+<target name="qualifier">
+        <phpmd failonerror="off">
+			<!--<ruleset>controversial</ruleset>-->
+			<ruleset>unusedcode</ruleset>
+			<ruleset>codesize</ruleset>
+			<ruleset>design</ruleset>
+			<ruleset>naming</ruleset>
+            <formatter type="xml" toFile="${basedir}/Rapports/pmd.xml" />
+            <fileset dir="${basedir}/Modele">
+                <include name="*.php" />
+            </fileset>
+        </phpmd>
+</target>
+
+<target name="all"  depends="supprimer,creer,unitaire,qualifier,documenter"/>
+</project>

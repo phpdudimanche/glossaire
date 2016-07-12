@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/css" href="defintions.css"?>
+<?xml-stylesheet type="text/xsl" href="definitions.xsl"?>
+<definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="definitions.xsd">
+  <lettres>
+    <lettres_item>A</lettres_item>
+    <lettres_item>E</lettres_item>
+    <lettres_item>Z</lettres_item>
+  </lettres>
+  <liste>
+    <liste_item>
+      <lettre>A</lettre>
+      <terme>ascenseur</terme>
+      <definition>monte</definition>
+    </liste_item>
+    <liste_item>
+      <lettre>E</lettre>
+      <terme>ecolier</terme>
+      <definition>travail</definition>
+    </liste_item>
+    <liste_item>
+      <lettre>Z</lettre>
+      <terme>zorro</terme>
+      <definition>heros</definition>
+    </liste_item>
+  </liste>
+</definitions>

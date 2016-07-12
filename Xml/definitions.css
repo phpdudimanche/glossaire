@@ -1,0 +1,9 @@
+a{color:red}
+a:link{color:red;text-decoration:none}
+a:hover{text-decoration:underline}
+p.menu{margin-top:0em}
+p.menu a{color:black}
+h2{color:black;display:inline}
+.top{background-color:white;padding-left:2em;}
+p{color:grey;margin-top:0em;padding-left:2em}
+/* #font-style:italic; */

@@ -1,0 +1,6 @@
+Rapports/**
+Doc/**
+vendor/**
+composer.lock
+notes.txt
+.git/**

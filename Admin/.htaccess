@@ -1,0 +1,9 @@
+AuthName "Acces a ED"
+AuthType Basic
+AuthUserFile "D:/www/test/Admin/.htpasswd"
+# AuthUserFile "/home/vol2_2/freecluster.eu/fceu_18332446/htdocs/test/Admin/.htpasswd"
+Require valid-user
+ErrorDocument 500 "<H1>Erreur serveur</H1>"
+ErrorDocument 401 "<H1>Merci de vous identifier</H1><br />Revenez en arriere"
+ErrorDocument 403 "<H1>Votre identification est incorrecte</H1><br />Revenez en arriere"
+ErrorDocument 404 "<H1>LURL nexiste pas</H1><br />Revenez en arriere"

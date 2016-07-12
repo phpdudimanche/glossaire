@@ -4,3 +4,4 @@ vendor/**
 composer.lock
 notes.txt
 .git/**
+liste-fichiers.txt

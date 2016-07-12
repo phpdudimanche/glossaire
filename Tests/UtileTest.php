@@ -1,6 +1,6 @@
 <?php
 // inclusion ici (pose pb en relatif) ou dans lanceur 
-include("../Modele/Utile.php");// ../Modele/Utile.php
+include(__DIR__ ."/../Modele/Utile.php");// ../Modele/Utile.php TRAVIS
 // execution 
 class UtileTest extends PHPUnit_Framework_TestCase
 {
@@ -69,7 +69,7 @@ class UtileTest extends PHPUnit_Framework_TestCase
 	
 	public function testCsv2array(){
 		// ARRANGE
-		$fichier = "../Tests-data/import.csv";// BUG-TEST definition sans s -- BUG  '´╗┐terme' enlever tout caractere autre que alphabetique
+		$fichier = __DIR__ ."/../Tests-data/import.csv";// TRAVIS BUG-TEST definition sans s -- BUG  '´╗┐terme' enlever tout caractere autre que alphabetique
 		$separateur =";";
 		$saut_de_ligne="\r\n";
 		$nbre_colonnes=2;
@@ -114,7 +114,7 @@ $expected=[
 	
 	public function testXml2array(){// export
 		// ARRANGE
-		$xml=simplexml_load_file("../Tests-data/definitions.xml");
+		$xml=simplexml_load_file(__DIR__ ."/../Tests-data/definitions.xml");// TRAVIS
 		$array=array();
 		$expected=[0=>['terme' => "terme",'definition' => "definition"],1=>['terme' => "ascenseur",'definition' => "monte"],2=>['terme' => "ecolier",'definition' => "travail"],3=>['terme' => "zorro",'definition' => "heros"]];		
 		// ACT
@@ -135,8 +135,8 @@ $expected=[
 	
 	public function testarrayCsv2file(){// test de fichier
 		// ARRANGE
-		$expected='../Tests-data/import.csv';
-		$actual='../Tests-data/export.csv';
+		$expected=__DIR__ .'/../Tests-data/import.csv';// TRAVIS
+		$actual=__DIR__ .'/../Tests-data/export.csv';// TRAVIS
 		if (file_exists($actual)){
 		unlink($actual);
 		}

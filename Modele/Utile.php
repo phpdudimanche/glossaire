@@ -1,5 +1,5 @@
 <?php
-require_once("../config.php");// seul chemin relatif a connaitre : depend dou est appele
+require_once(__DIR__ ."/../config.php");// seul chemin relatif a connaitre : depend dou est appele TRAVIS
 //echo "<br />".PATH;
 
 /** Toutes les fonctions utiles pour les tableaux associatifs et transformation xml, csv

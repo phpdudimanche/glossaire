@@ -140,7 +140,7 @@ $expected=[
 		if (file_exists($actual)){
 		unlink($actual);
 		}
-		$data=[0=>"terme;definition\r\n",1=>"ascenseur;monté\r\n",2=>"ecolier;travail\r\n",3=>"zorro;héros\r\n"];
+		$data=[0=>"terme;definition\r\n",1=>"ascenseur;monte\r\n",2=>"ecolier;travail\r\n",3=>"zorro;heros\r\n"];
 		// ACT		
 		Utile::array_formatCsv_versFichierCsv($data,$actual);
 		// ASSERT

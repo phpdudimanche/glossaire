@@ -1,4 +1,4 @@
-# Glossaire en ligne #
+# Glossaire en ligne [![Build Status](https://travis-ci.org/phpdudimanche/glossaire.svg?branch=master)](https://travis-ci.org/phpdudimanche/glossaire) #
 
  **ED (Elementary Glossary)**, le bien nommé, est la version simpliste d'un glossaire correspondant à un besoin tout aussi élémentaire. Chaque projet (de Dev, de Test...) a son MOU (Memorandum Of understanding) ; autant faire dans la simplicité. Fonctionne avec excel 2007 pour un csv ayant ces contraintes :
 

@@ -215,16 +215,26 @@ foreach($sx->liste as $product){  // OK pour array
 }
 }
 
+/** detecter le serveur
+ * @return string OUI(win) NON(linux,Mac)
+ */
+static function winOuLin(){
+$detect=isset($_SERVER['SERVER_SOFTWARE'])?$_SERVER['SERVER_SOFTWARE']:'';// phpunit : eviter undefined index
+$cherche='Win';
+$trouve=strpos($detect,$cherche);
+return($trouve===FALSE)?'NON':'OUI';// test que sur FALSE
+}
+
 /** formater un array en csv
- * @todo mettre en parametrage les echappements, separateur de champ, separateur de ligne
+ * @param $formar array (todo FAIT mettre en parametrage les echappements, separateur de champ, separateur de ligne=
  * @param $new_items array tableau a traiter
  * @return tableau traite au format csv
  */
-static function array_format_csv($new_items){
+static function array_format_csv($new_items,$format){
 // prepare le formatage csv
-array_walk($new_items,function($element,$key)use(&$new_items){
-	$new_items[$key]=implode(";",$element)."\r\n";// aucun echappement V0 -- option $new_items[$key]="`".implode("`;`",$element)."`\r\n";
-	// ajouter entete
+array_walk($new_items,function($element,$key)use(&$new_items,&$format){
+	//$new_items[$key]=implode(";",$element)."\r\n";// aucun echappement V0 -- option $new_items[$key]="`".implode("`;`",$element)."`\r\n";
+	$new_items[$key]=implode($format['separateur'],$element).$format['findeligne'];
 });
 return $new_items;
 }

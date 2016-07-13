@@ -8,7 +8,13 @@ $csv="../Xml/export.csv";
 $array=array();
 
 $result=Utile::xml_to_array($xml,$array);
-$result=Utile::array_format_csv($result);
+
+$test=OS;//Utile::winOuLin();
+($test=="OUI")?$finDeLigne="\r\n":$finDeLigne="\n";// capable ou pas de passer en variable ?
+$separateur=";";
+$format=['findeligne'=>"$finDeLigne",'separateur'=>"$separateur"];
+
+$result=Utile::array_format_csv($result,$format);
 
 //print_r($result);
 Utile::array_formatCsv_versFichierCsv($result,$csv);

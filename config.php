@@ -1,6 +1,8 @@
 <?php
 // fichier de bootstrap
-define ("PATH",__DIR__);
+require_once(__DIR__ ."/Modele/Utile.php");
+$os=Utile::winOuLin();// PHPUNIT cli ne connait pas ces var, donc constante dans phpunit.xml
+define ("OS",$os);
 //--- utilise par : import_act.php
 		$separateur =";";
 		$saut_de_ligne="\r\n";

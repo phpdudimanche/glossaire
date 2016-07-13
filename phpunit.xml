@@ -1,7 +1,12 @@
-<phpunit>
+<phpunit
+	convertNoticesToExceptions="false"
+	verbose="false">
+<php>
+	<const name="os" value="Lin"/>
+</php>
 <testsuites>
   <testsuite name="unique">
     <directory>Tests/</directory>
-  </testsuite>
+  </testsuite>  
 </testsuites>
 </phpunit>

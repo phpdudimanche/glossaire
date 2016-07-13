@@ -71,7 +71,7 @@ class UtileTest extends PHPUnit_Framework_TestCase
 		// ARRANGE
 		$fichier = __DIR__ ."/../Tests-data/import.csv";// TRAVIS BUG-TEST definition sans s -- BUG  '´╗┐terme' enlever tout caractere autre que alphabetique
 		$separateur =";";
-		$saut_de_ligne="\r\n";
+		$saut_de_ligne="\r\n";// TODO prevoir aussi \n et refaire methode
 		$nbre_colonnes=2;
 		$entete="on";// "on" 1
 		$debug="off";
@@ -126,21 +126,36 @@ $expected=[
 	public function testArray2csv(){// test avec saut de ligne
 		// ARRANGE
 		$data=[0=>['terme' => "terme",'definition' => "definition"],1=>['terme' => "ascenseur",'definition' => "monte"],2=>['terme' => "ecolier",'definition' => "travail"],3=>['terme' => "zorro",'definition' => "heros"]];
-		$expected=[0=>"terme;definition\r\n",1=>"ascenseur;monte\r\n",2=>"ecolier;travail\r\n",3=>"zorro;heros\r\n"]; 
+			//---- WARNING ---- dépendance à autre méthode
+			$test=OS;//Utile::winOuLin();// undefined index: SERVER_SOFTWARE (pour PHPUNIT)
+			($test=="OUI")?$finDeLigne="\r\n":$finDeLigne="\n";// capable ou pas de passer en variable ?
+			$separateur=";";
+			$format=['findeligne'=>"$finDeLigne",'separateur'=>"$separateur"];
+		//$expected=[0=>"terme;definition\r\n",1=>"ascenseur;monte\r\n",2=>"ecolier;travail\r\n",3=>"zorro;heros\r\n"]; 
+		$expected=[0=>"terme$format[separateur]definition$format[findeligne]",1=>"ascenseur$format[separateur]monte$format[findeligne]",2=>"ecolier$format[separateur]travail$format[findeligne]",3=>"zorro$format[separateur]heros$format[findeligne]"];
 		// ACT
-		$actual=Utile::array_format_csv($data);
+		//$actual=Utile::array_format_csv($data);
+		$actual=Utile::array_format_csv($data,$format);
 		// ASSERT
 		$this->assertEquals($expected, $actual);
 	}
 	
 	public function testarrayCsv2file(){// test de fichier
 		// ARRANGE
-		$expected=__DIR__ .'/../Tests-data/import.csv';// TRAVIS
+			$test=OS;
+			($test=="OUI")?$suffixe="_WIN":$suffixe="_LIN";
+		$expected=__DIR__ .'/../Tests-data/import'.$suffixe.'.csv';// TRAVIS	
+		//$expected=__DIR__ .'/../Tests-data/import.csv';// TRAVIS
 		$actual=__DIR__ .'/../Tests-data/export.csv';// TRAVIS
+		echo $expected;
 		if (file_exists($actual)){
 		unlink($actual);
 		}
-		$data=[0=>"terme;definition\r\n",1=>"ascenseur;monte\r\n",2=>"ecolier;travail\r\n",3=>"zorro;heros\r\n"];
+			($test=="OUI")?$finDeLigne="\r\n":$finDeLigne="\n";// capable ou pas de passer en variable ?
+			$separateur=";";
+			$format=['findeligne'=>"$finDeLigne",'separateur'=>"$separateur"];
+			$data=[0=>"terme$format[separateur]definition$format[findeligne]",1=>"ascenseur$format[separateur]monte$format[findeligne]",2=>"ecolier$format[separateur]travail$format[findeligne]",3=>"zorro$format[separateur]heros$format[findeligne]"];
+		//$data=[0=>"terme;definition\r\n",1=>"ascenseur;monte\r\n",2=>"ecolier;travail\r\n",3=>"zorro;heros\r\n"];
 		// ACT		
 		Utile::array_formatCsv_versFichierCsv($data,$actual);
 		// ASSERT
